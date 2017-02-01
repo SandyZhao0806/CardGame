@@ -13,12 +13,13 @@ Game::Game(QWidget *parent){
 
 Game::~Game(){
     for(int i = 0 ; i < piles.size() ; i++){
-        parent->layout()->removeWidget(piles.at(i));
+//        parent->layout()->removeWidget(piles.at(i));
+        piles.at(i)->setParent(0);
         delete piles.at(i);
     }
 }
 
 void Game::AddPile(Pile *p){
-    parent->layout()->addWidget(p);
+//    parent->layout()->addWidget(p);
     piles.append(p);
 }

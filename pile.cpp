@@ -28,9 +28,28 @@ extern QList<Pile *> piles;
 Pile::Pile(int x, int y, int dx, int dy, QWidget *parent):
     QLabel(parent),delta(QPoint(dx,dy)),top(0),bottom(0)
 {
+        setParent(parent);
+        setFrameShape(Box);
+        resize(dx,dy);
+        move(x,y);
+        setLineWidth(2);
+        show();
     //TODO
 }
 Pile::~Pile()
 {
     //TODO
+}
+
+void Pile::appendCard(Card *c){
+    if(!top){
+        top = c;
+    }else{
+        top->setOver(c);
+        c->setUnder(top);
+        top=c;
+    }
+    if(!bottom){
+        bottom=top;
+    }
 }

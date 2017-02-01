@@ -138,7 +138,7 @@ void Card::Playoff(){
   //  game->Playoff(this);
 }
 
-void shuffle(Card* Deck[],int n){
+void Shuffle(Card* Deck[],int n){
     Card* temp;
     int k;
     while(n>0){

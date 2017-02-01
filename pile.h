@@ -14,14 +14,15 @@ class Pile :public QLabel // abstract base class for pile types
 {
 protected:
     QPoint delta; //offset to next card in the pile
-private:
-
     Card *top;
     Card *bottom;
+private:
+
+
 public:
     Pile(int x, int y, int dx, int dy, QWidget *parent);
     ~Pile();
-
+    void appendCard(Card *c);
     Card *Top(){return top;}
     Card *Bottom(){return bottom;}
     void AcceptCards(Card *c, bool expose = true, bool record = true);

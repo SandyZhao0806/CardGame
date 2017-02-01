@@ -5,7 +5,7 @@
 #include <QImage>
 #include <QPoint>
 enum cardColors{BLACK, RED};
-enum pips{ACE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,TEN,JACK,QUEEN,KING,SUIT_SIZE};
+enum pips{ACE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE,TEN,JACK,QUEEN,KING,SUIT_SIZE};
 enum suits{CLUBS,DIAMONDS,HEARTS,SPADES};
 class Pile; //forward declaration
 
@@ -42,7 +42,9 @@ public:
     cardColors Color(){return color;}
     Pile *Pilep(){return pile;}
     Card *Over(){return over;}
+    Card setOver(Card *over){this->over = over;}
     Card *Under(){return under;}
+    Card setUnder(Card *under){this->under = under;}
     int StackSize();
     bool Faceup(){return faceup;}
     void Faceup(bool f);
