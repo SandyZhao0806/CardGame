@@ -12,3 +12,18 @@ gameboard::~gameboard()
 {
     delete ui;
 }
+
+void gameboard::on_actionKlondike_triggered()
+{
+
+}
+
+void gameboard::on_actionSpider_triggered()
+{
+
+}
+
+void gameboard::on_actionFreeccell_triggered()
+{
+
+}

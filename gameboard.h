@@ -15,6 +15,13 @@ public:
     explicit gameboard(QWidget *parent = 0);
     ~gameboard();
 
+private slots:
+    void on_actionKlondike_triggered();
+
+    void on_actionSpider_triggered();
+
+    void on_actionFreeccell_triggered();
+
 private:
     Ui::gameboard *ui;
 };

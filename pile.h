@@ -43,29 +43,7 @@ public:
     virtual void onClickEvent(Card *){} //override as needed
     virtual void mouseDoubleClickEvent(Card *){} //override as needed
 
-#if(0)
-    // Inheriting classes that differ in rules
-    class PileStock:public Pile
-    {
-        //TODO
-    };
-    class PileFoundationi:public Pile
-    {
-        //TODO
-    };
-    class PileTableau:public Pile
-    {
-        //TODO
-    };
-    class PileFreeCell:public Pile
-    {
-        //TODO
-    };
-    class PileWaste:public Pile
-    {
-        //TODO
-    };
-#endif
+
 };
 
 

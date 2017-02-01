@@ -9,7 +9,7 @@ enum pips{ACE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,TEN,JACK,QUEEN,KING,SUIT_SIZE}
 enum suits{CLUBS,DIAMONDS,HEARTS,SPADES};
 class Pile; //forward declaration
 
-class Card
+class Card: public QLabel
 {
 
 private:
@@ -36,21 +36,21 @@ private:
 
 public:
     Card(int v, QWidget *parent = 0);
-    Card(pips p, suits s, QWidget *parent = 0);
-    suits Suit();//{return suit;}
-    pips Pip();//{return pip;}
-    cardColors Color();//{return color;}
-    Pile *Pilep();//{return pile;}
-    Card *Over();//{return over;}
-    Card *Under();//{return under;}
+    Card(pips p, suits s, QWidget *parent);
+    suits Suit(){return suit;}
+    pips Pip(){return pip;}
+    cardColors Color(){return color;}
+    Pile *Pilep(){return pile;}
+    Card *Over(){return over;}
+    Card *Under(){return under;}
     int StackSize();
-    bool Faceup();//{return faceup;}
+    bool Faceup(){return faceup;}
     void Faceup(bool f);
     void mousePressEvent(QMouseEvent *ev);
     void mouseMoveEvent(QMouseEvent *ev);
     void mouseReleaseEvent(QMouseEvent *ev);
     void mouseDoubleClickEvent(QMouseEvent *ev);
-    void Move(Pile *to, bool expose = true);
+    void Move(Pile *to, bool expose);
 
     Card *AdjustPositions(QPoint newPos, QPoint delta);
     void AlignWithPile();

@@ -3,26 +3,26 @@
 #include "gameboard.h"
 #include "cardmove.h"
 
-#if(0)
-extern GameBoard *MainApp;
+
+extern gameboard *MainApp;
 extern Game *game;
 extern QList<Pile *> piles;
 
 // static member data allocation
-Rule *PileStock::dragRules[DRAGLAST];
-Rule *PileStock::dropRules[DROPLAST];
+//Rule *PileStock::dragRules[DRAGLAST];
+//Rule *PileStock::dropRules[DROPLAST];
 
-Rule *PileFoundation::dragRules[DRAGLAST];
-Rule *PileFoundation::dropRules[DROPLAST];
+//Rule *PileFoundation::dragRules[DRAGLAST];
+//Rule *PileFoundation::dropRules[DROPLAST];
 
-Rule *PileTableau::dragRules[DRAGLAST];
-Rule *PileTableau::dropRules[DROPLAST];
+//Rule *PileTableau::dragRules[DRAGLAST];
+//Rule *PileTableau::dropRules[DROPLAST];
 
-Rule *PileFreeCell::dragRules[DRAGLAST];
-Rule *PileFreeCell::dropRules[DROPLAST];
+//Rule *PileFreeCell::dragRules[DRAGLAST];
+//Rule *PileFreeCell::dropRules[DROPLAST];
 
 
-Rule *PileWaste::dragRules[DRAGLAST];
+//Rule *PileWaste::dragRules[DRAGLAST];
 
 // constructor
 Pile::Pile(int x, int y, int dx, int dy, QWidget *parent):
@@ -34,4 +34,3 @@ Pile::~Pile()
 {
     //TODO
 }
-#endif
