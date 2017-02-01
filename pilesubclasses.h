@@ -5,7 +5,6 @@ class Pile;
 class PileStock:public Pile
 {   public:
     PileStock(int x, int y, int dx, int dy, QWidget *parent);
-    void appendCard(Card *c);
     //TODO
 };
 class PileFoundation:public Pile
@@ -18,7 +17,6 @@ class PileTableau:public Pile
 {
     public:
     PileTableau(int x, int y, int dx, int dy, QWidget *parent);
-    void appendCard(Card *c);
     //TODO
 };
 //    class PileFreeCell:public Pile

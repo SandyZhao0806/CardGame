@@ -16,13 +16,13 @@ protected:
     QPoint delta; //offset to next card in the pile
     Card *top;
     Card *bottom;
+    virtual void paintEvent(QPaintEvent *);
 private:
 
 
 public:
     Pile(int x, int y, int dx, int dy, QWidget *parent);
     ~Pile();
-    void appendCard(Card *c);
     Card *Top(){return top;}
     Card *Bottom(){return bottom;}
     void AcceptCards(Card *c, bool expose = true, bool record = true);

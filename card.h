@@ -42,9 +42,9 @@ public:
     cardColors Color(){return color;}
     Pile *Pilep(){return pile;}
     Card *Over(){return over;}
-    Card setOver(Card *over){this->over = over;}
+    void setOver(Card *over){this->over = over;}
     Card *Under(){return under;}
-    Card setUnder(Card *under){this->under = under;}
+    void setUnder(Card *under){this->under = under;}
     int StackSize();
     bool Faceup(){return faceup;}
     void Faceup(bool f);

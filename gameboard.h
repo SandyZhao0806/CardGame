@@ -6,6 +6,7 @@
 namespace Ui {
 class gameboard;
 }
+class Game;
 
 class gameboard : public QMainWindow
 {
@@ -24,6 +25,7 @@ private slots:
 
 private:
     Ui::gameboard *ui;
+    Game * g = 0;
 };
 
 #endif // GAMEBOARD_H

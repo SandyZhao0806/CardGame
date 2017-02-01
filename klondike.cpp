@@ -44,11 +44,13 @@ void Klondike::ReDeal(hardtype h){
     int pointer=51;
     for(int i=0;i<sizeof(tableau)/sizeof(Pile *);i++){
         for(int j=0;j<=i;j++){
-            tableau[i]->appendCard(deck[pointer--]);
+//            tableau[i]->appendCard(deck[pointer--]);
+            deck[pointer--]->Move(tableau[i], j == i ? true : false);// expose the card on top
         }
     }
     for(int i=0;i<=pointer;i++){
-        deal->appendCard(deck[i]);
+//        deal->appendCard(deck[i]);
+        deck[i]->Move(deal, false);
     }
 }
 

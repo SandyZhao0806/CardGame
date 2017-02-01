@@ -2,6 +2,9 @@
 #include "card.h"
 #include "gameboard.h"
 #include "cardmove.h"
+#include <QStyleOption>
+#include <QPainter>
+#include <QStyle>
 
 
 extern gameboard *MainApp;
@@ -28,6 +31,7 @@ extern QList<Pile *> piles;
 Pile::Pile(int x, int y, int dx, int dy, QWidget *parent):
     QLabel(parent),delta(QPoint(dx,dy)),top(0),bottom(0)
 {
+        setStyleSheet("border: 2px dotted grey;");
         setParent(parent);
         setFrameShape(Box);
         resize(dx,dy);
@@ -41,15 +45,35 @@ Pile::~Pile()
     //TODO
 }
 
-void Pile::appendCard(Card *c){
-    if(!top){
-        top = c;
-    }else{
+void Pile::paintEvent(QPaintEvent *pe)
+
+{
+
+    QStyleOption o;
+    o.initFrom(this);
+    QPainter p(this);
+    style()->drawPrimitive(
+    QStyle::PE_Widget, &o, &p, this);
+
+}
+
+void Pile::AcceptCards(Card *c, bool expose, bool record)
+{
+    Card * topMost;
+    Card * temp = c;
+    do
+    {
+        topMost = temp;
+        topMost->Faceup(expose);//Important : This will set pixmap!
+        temp = temp->Over();
+    }while (temp);//temp will be NULL finally.
+
+    if(top)
+    {
         top->setOver(c);
         c->setUnder(top);
-        top=c;
     }
-    if(!bottom){
-        bottom=top;
-    }
+    top = topMost;
+    if(!bottom)
+        bottom = top;
 }

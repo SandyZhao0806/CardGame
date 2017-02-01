@@ -7,18 +7,24 @@ Card* Card::popUpCard;
 QImage Card::faces[53];
 bool Card::initialized = false;
 
-Card::Card(int v, QWidget *parent):QLabel(parent){
+Card::Card(int v, QWidget *parent)
+    :QLabel(parent), under(0), over(0), pile(0){
     value = v;
+    resize(71, 96);
 }
 
-Card::Card(pips p, suits s, QWidget *parent = 0):QLabel(parent){
+Card::Card(pips p, suits s, QWidget *parent = 0)
+    :QLabel(parent), under(0), over(0), pile(0){
     pip=p;
     suit = s;
+    // Calculate value!
+    value = s * SUIT_SIZE + p;
     if(s == DIAMONDS || s == HEARTS ){
         color = RED;
     }else{
         color = BLACK;
     }
+    resize(71, 96);
 }
 
 int Card:: StackSize(){
@@ -26,7 +32,7 @@ int Card:: StackSize(){
     Card *card=this;
     do{
         count++;
-        card=card->over;
+        card=card->under;//for me I use "under" to refer the card under "this"
     }while(card);
     return count;
 }
@@ -79,7 +85,18 @@ void Card::mouseDoubleClickEvent(QMouseEvent *ev){
     //Playoff();
 }
 void Card::Move(Pile *to, bool expose = true){
+    int cardUnderCount = 0;
+    pile = to;
 
+    if(pile->Top())
+        cardUnderCount = pile->Top()->StackSize();
+
+    pile->AcceptCards(this, expose, false);
+
+    //TODO: Create another function to calc move distance
+    move(pile->x() + pile->Delta().x() / 2 * cardUnderCount, pile->y() + to->Delta().y() / 2 * cardUnderCount);
+    raise();// to top
+    show();
 }
 
 Card* Card::AdjustPositions(QPoint newPos, QPoint delta){
