@@ -17,14 +17,14 @@ public:
     virtual ~Game();
     void Clear();
     virtual void ReDeal(hardtype h = REPEAT)=0;
-    virtual bool PlayOff(Card *c);
-    virtual void PlayOffAll();
+//    virtual bool PlayOff(Card *c);
+//    virtual void PlayOffAll();
     virtual void OnFieldDoubleClick(Card *){}
     virtual void OnFiledClick(Card *c){}
     virtual void OnDealClick(Card *c){}
     virtual void OnDealtClick(Card *c){}
     virtual void OnFreeCellClick(Card *c){}
-    virtual void CheckWin();
+//    virtual void CheckWin();
     virtual QString GameName()=0;
     virtual int FreeMoves(){return 0;} // calculate max move fo freecell
     friend class Pile;

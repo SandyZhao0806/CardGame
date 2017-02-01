@@ -3,7 +3,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QImage>
-
+#include <QPoint>
 enum cardColors{BLACK, RED};
 enum pips{ACE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,TEN,JACK,QUEEN,KING,SUIT_SIZE};
 enum suits{CLUBS,DIAMONDS,HEARTS,SPADES};

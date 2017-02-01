@@ -14,7 +14,7 @@ public:
     Klondike(QWidget *par);
     ~Klondike();
     void ReDeal(hardtype h=EASY);
-//    QString GameName();
+    QString GameName(){return 0;}
 //    void DealAction();
 //    void OnFiledClick(Card *c);
 //    void OnDealClick(Card *);

@@ -7,6 +7,7 @@ Klondike::Klondike(QWidget *par):Game(par)
     //create piles
     const int span = 30;
     deal = new PileStock(30,30,71,96,parent);
+    deal->setStyleSheet("border: 3px solid grey");
     waste = new PileWaste(30+71+span,30,71,96,parent);
     for(int i = 0 ; i < 4; i++){
         foundation[i] = new PileFoundation(220+(span+71)*i,30,71,96,parent);
@@ -26,8 +27,7 @@ Klondike::Klondike(QWidget *par):Game(par)
 }
 
 Klondike::~Klondike(){
-//    delete[] foundation;
-//    delete[] tableau;
+
 }
 
 void Klondike::ReDeal(hardtype h){

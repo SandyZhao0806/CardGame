@@ -1,5 +1,6 @@
 #ifndef PILE_SUBCLASSES_H
 #define PILE_SUBCLASSES_H
+class Pile;
 // Inheriting classes that differ in rules
 class PileStock:public Pile
 {   public:

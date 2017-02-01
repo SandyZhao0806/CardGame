@@ -1,5 +1,9 @@
 #include "pile.h"
 #include "card.h"
+QPoint Card::startDragPos;
+QPoint Card::mouseDownOffset;
+QPoint Card::popUpPos;
+Card* Card::popUpCard;
 QImage Card::faces[53];
 bool Card::initialized = false;
 
