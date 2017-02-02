@@ -45,3 +45,10 @@ void gameboard::on_actionFreeccell_triggered()
    g = new FreeCell(ui->centralWidget);
    g->ReDeal(REPEAT);
 }
+
+void gameboard::on_actionRedeal_triggered()
+{
+    if(!g) return;
+    g->ReDeal();
+
+}

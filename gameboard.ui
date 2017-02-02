@@ -100,6 +100,7 @@
      <addaction name="actionFreeccell"/>
     </widget>
     <addaction name="menuNew"/>
+    <addaction name="actionRedeal"/>
    </widget>
    <addaction name="menuGame"/>
   </widget>
@@ -125,6 +126,14 @@
   <action name="actionFreeccell">
    <property name="text">
     <string>Freeccell</string>
+   </property>
+  </action>
+  <action name="actionRedeal">
+   <property name="text">
+    <string>Redeal</string>
+   </property>
+   <property name="shortcut">
+    <string>Meta+R</string>
    </property>
   </action>
  </widget>

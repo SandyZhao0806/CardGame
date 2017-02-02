@@ -44,7 +44,7 @@ Pile::~Pile()
 {
     while(top){
     Card *c = top;
-    top=c->over;
+    top=c->under;
     c->setParent(0);
     delete c;
     }

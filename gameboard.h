@@ -23,6 +23,8 @@ private slots:
 
     void on_actionFreeccell_triggered();
 
+    void on_actionRedeal_triggered();
+
 private:
     Ui::gameboard *ui;
     Game * g = 0;
