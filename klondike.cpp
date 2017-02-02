@@ -5,6 +5,14 @@
 
 Klondike::Klondike(QWidget *par):Game(par)
 {
+
+}
+
+Klondike::~Klondike(){
+
+}
+
+void Klondike::CreatePile(){
     //create piles
     const int span = 30;
     deal = new PileStock(30,30,71,96,parent);
@@ -15,6 +23,7 @@ Klondike::Klondike(QWidget *par):Game(par)
     for(int i = 0 ; i < 7; i++){
         tableau[i] = new PileTableau(30+(span+71)*i,200,71,96,parent);
     }
+
     //add them to parent
     AddPile(deal);
     AddPile(waste);
@@ -25,14 +34,10 @@ Klondike::Klondike(QWidget *par):Game(par)
         AddPile(tableau[i]);
     }
 }
-
-Klondike::~Klondike(){
-
-}
-
 void Klondike::ReDeal(hardtype h){
 
-    clear();
+    Clear();
+    CreatePile();
     Card* deck[52];
     for(int i = CLUBS; i<= SPADES;i++){
 

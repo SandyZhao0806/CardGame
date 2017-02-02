@@ -5,6 +5,14 @@
 
 FreeCell::FreeCell(QWidget *par):Game(par)
 {
+
+}
+
+FreeCell::~FreeCell(){
+
+}
+
+void FreeCell::CreatePile(){
     //create piles
     const int span = 30;
     for(int i = 0 ; i < 4; i++){
@@ -28,12 +36,10 @@ FreeCell::FreeCell(QWidget *par):Game(par)
     }
 }
 
-FreeCell::~FreeCell(){
-
-}
 
 void FreeCell::ReDeal(hardtype h){
-//    Game::Clear();
+    Clear();
+    CreatePile();
     Card* deck[52];
     for(int i = CLUBS; i<= SPADES;i++){
 

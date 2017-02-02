@@ -10,6 +10,8 @@ class Klondike: public Game
    Pile *waste;
    Pile *foundation[4];
    Pile *tableau[7];
+private:
+   void CreatePile();
 public:
     Klondike(QWidget *par);
     ~Klondike();

@@ -120,7 +120,7 @@
   </action>
   <action name="actionSpider">
    <property name="text">
-    <string>Spider</string>
+    <string>Spider(not complete)</string>
    </property>
   </action>
   <action name="actionFreeccell">
@@ -133,7 +133,7 @@
     <string>Redeal</string>
    </property>
    <property name="shortcut">
-    <string>Meta+R</string>
+    <string>Ctrl+R</string>
    </property>
   </action>
  </widget>

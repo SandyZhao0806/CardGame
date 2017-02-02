@@ -9,6 +9,8 @@ class FreeCell: public Game
     Pile *freecell[4];
     Pile *foundation[4];
     Pile *tableau[8];
+private:
+   void CreatePile();
 public:
     FreeCell(QWidget *par);
     ~FreeCell();

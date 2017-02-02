@@ -5,34 +5,38 @@
 
 Spider::Spider(QWidget *par):Game(par)
 {
-    //create piles
-    const int span = 30;
-    deal = new PileStock(30,30,71,96,parent);
-    waste = new PileWaste(30+71+span,30,71,96,parent);
-    for(int i = 0 ; i < 4; i++){
-        foundation[i] = new PileFoundation(320+(span+71)*i,30,71,96,parent);
-    }
-    for(int i = 0 ; i < 7; i++){
-        tableau[i] = new PileTableau(30+(span+71)*i,200,71,96,parent);
-    }
-    //add them to parent
-    AddPile(deal);
-    AddPile(waste);
-    for(int i = 0 ; i < 4; i++){
-        AddPile(foundation[i]);
-    }
-    for(int i = 0 ; i < 7; i++){
-        AddPile(tableau[i]);
-    }
+
 }
 
 Spider::~Spider(){
 
 }
 
-void Spider::ReDeal(hardtype h){
+void Spider::CreatePile(){
+    //create piles
+    const int span = 30;
+    for(int i = 0 ; i < 10; i++){
+        tableau[i] = new PileTableau(30+(span+71)*i,30,71,96,parent);
+    }
+    for(int i = 0 ; i < 8; i++){
+        foundation[i] = new PileFoundation(30+(span+10)*i,300,71,96,parent);
+    }
+    deal = new PileStock(700,300,71,96,parent);
+    //add them to parent
+    AddPile(deal);
+    for(int i = 0 ; i < 8; i++){
+        AddPile(foundation[i]);
+    }
+    for(int i = 0 ; i < 10; i++){
+        AddPile(tableau[i]);
+    }
+}
 
-    Card* deck[52];
+
+void Spider::ReDeal(hardtype h){
+    Clear();
+    CreatePile();
+    Card* deck[104];
     for(int i = CLUBS; i<= SPADES;i++){
 
         for(int j=ACE; j<=KING;j++){
@@ -40,13 +44,18 @@ void Spider::ReDeal(hardtype h){
             deck[i*SUIT_SIZE+j]=new Card((pips)j,(suits)i,parent);
         }
     }
+    for(int i = CLUBS; i<= SPADES;i++){
 
+        for(int j=ACE; j<=KING;j++){
+
+            deck[52+i*SUIT_SIZE+j]=new Card((pips)j,(suits)i,parent);
+        }
+    }
     Shuffle(deck,sizeof(deck)/sizeof(Card *));
-    int pointer=51;
-    for(int i=0;i<sizeof(tableau)/sizeof(Pile *);i++){
-        for(int j=0;j<=i;j++){
-//            tableau[i]->appendCard(deck[pointer--]);
-            deck[pointer--]->Move(tableau[i], j == i ? true : false);// expose the card on top
+    int pointer=103;
+    for(int i=0;i<10;i++){
+        for(int j=0;j<6 && i<4||j<5 && i<10;j++){
+            deck[pointer--]->Move(tableau[i], j==i ? true : false);// expose the card on top
         }
     }
     for(int i=0;i<=pointer;i++){
