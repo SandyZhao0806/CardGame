@@ -33,7 +33,7 @@ public:
 //    bool CanBeDropped(Card *c); //checks relavent rules for this pile
     void FindClosestDrop(Card *c){}
 //    void Deal(QMouseEvent *ev);
-//    void AddDropRules(int n...);
+    void AddDropRules(int n...);
 //    void AddDragRules(int n...);
 
 //    virtual Rule * DragRule(int i)=0;

@@ -3,6 +3,7 @@
 #include <QtGlobal>
 #include "game.h"
 #include "klondike.h"
+#include "freecell.h"
 #include "ui_gameboard.h"
 #include "card.h"
 
@@ -37,5 +38,10 @@ void gameboard::on_actionSpider_triggered()
 
 void gameboard::on_actionFreeccell_triggered()
 {
-
+    // initialize
+   Card::Initialize();
+   if(g)
+       delete g;//Temp solution : (should have a game end functions)
+   g = new FreeCell(ui->centralWidget);
+   g->ReDeal(REPEAT);
 }

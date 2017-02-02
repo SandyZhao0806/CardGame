@@ -24,7 +24,7 @@ public:
     virtual void OnDealClick(Card *c){}
     virtual void OnDealtClick(Card *c){}
     virtual void OnFreeCellClick(Card *c){}
-//    virtual void CheckWin();
+//    virtual void CheckWin();//every piles are empty expect the foundation(checking type of pile)
     virtual QString GameName()=0;
     virtual int FreeMoves(){return 0;} // calculate max move fo freecell
     friend class Pile;

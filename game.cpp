@@ -23,3 +23,10 @@ void Game::AddPile(Pile *p){
 //    parent->layout()->addWidget(p);
     piles.append(p);
 }
+
+void Game::Clear(){
+    while(!piles.empty()){
+    Pile *p = piles.takeLast();
+    if(p) delete p;
+    }
+}

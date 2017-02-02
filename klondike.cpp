@@ -31,6 +31,7 @@ Klondike::~Klondike(){
 }
 
 void Klondike::ReDeal(hardtype h){
+
     Card* deck[52];
     for(int i = CLUBS; i<= SPADES;i++){
 

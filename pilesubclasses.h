@@ -19,10 +19,12 @@ class PileTableau:public Pile
     PileTableau(int x, int y, int dx, int dy, QWidget *parent);
     //TODO
 };
-//    class PileFreeCell:public Pile
-//    {
-//        //TODO
-//    };
+class PileFreeCell:public Pile
+{
+    public:
+    PileFreeCell(int x, int y, int dx, int dy, QWidget *parent);
+    //TODO
+};
 class PileWaste:public Pile
 {
     public:

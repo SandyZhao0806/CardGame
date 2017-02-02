@@ -42,6 +42,13 @@ Pile::Pile(int x, int y, int dx, int dy, QWidget *parent):
 }
 Pile::~Pile()
 {
+    while(top){
+    Card *c = top;
+    top=c->over;
+    c->setParent(0);
+    delete c;
+    }
+
     //TODO
 }
 
@@ -76,4 +83,15 @@ void Pile::AcceptCards(Card *c, bool expose, bool record)
     top = topMost;
     if(!bottom)
         bottom = top;
+}
+
+void Pile::AddDropRules(int n...)
+{
+    va_list lp;
+    va_start(lp,n);
+    int i = 0;
+    while(i<n)
+        DropRule(i++,va_arg(lp,Rule*));
+    DropRule(i,NULL);
+    va_end(lp);
 }
