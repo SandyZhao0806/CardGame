@@ -15,7 +15,7 @@ public:
     FreeCell(QWidget *par);
     ~FreeCell();
     void ReDeal(hardtype h=EASY);
-    QString GameName(){return 0;}
+    QString GameName(){return "FreeCell";}
 };
 
 #endif // FREECELL_H

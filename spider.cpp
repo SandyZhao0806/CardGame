@@ -19,9 +19,9 @@ void Spider::CreatePile(){
         tableau[i] = new PileTableau(30+(span+71)*i,30,71,96,parent);
     }
     for(int i = 0 ; i < 8; i++){
-        foundation[i] = new PileFoundation(30+(span+10)*i,300,71,96,parent);
+        foundation[i] = new PileFoundation(30+(span+71)*i,500,71,96,parent);
     }
-    deal = new PileStock(700,300,71,96,parent);
+    deal = new PileStock(950,500,71,96,parent);
     //add them to parent
     AddPile(deal);
     for(int i = 0 ; i < 8; i++){
@@ -55,7 +55,7 @@ void Spider::ReDeal(hardtype h){
     int pointer=103;
     for(int i=0;i<10;i++){
         for(int j=0;j<6 && i<4||j<5 && i<10;j++){
-            deck[pointer--]->Move(tableau[i], j==i ? true : false);// expose the card on top
+            deck[pointer--]->Move(tableau[i], (j==5&&i<4||j==4&&i>=4)? true : false);// expose the card on top
         }
     }
     for(int i=0;i<=pointer;i++){

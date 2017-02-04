@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>835</width>
-    <height>512</height>
+    <width>1172</width>
+    <height>794</height>
    </rect>
   </property>
   <property name="palette">
@@ -16,18 +16,18 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>17</red>
-        <green>123</green>
-        <blue>22</blue>
+        <red>13</red>
+        <green>94</green>
+        <blue>16</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>16</red>
-        <green>108</green>
-        <blue>11</blue>
+        <red>13</red>
+        <green>79</green>
+        <blue>9</blue>
        </color>
       </brush>
      </colorrole>
@@ -36,18 +36,18 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>17</red>
-        <green>123</green>
-        <blue>22</blue>
+        <red>13</red>
+        <green>94</green>
+        <blue>16</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>16</red>
-        <green>108</green>
-        <blue>11</blue>
+        <red>13</red>
+        <green>79</green>
+        <blue>9</blue>
        </color>
       </brush>
      </colorrole>
@@ -56,18 +56,18 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>16</red>
-        <green>108</green>
-        <blue>11</blue>
+        <red>13</red>
+        <green>79</green>
+        <blue>9</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>16</red>
-        <green>108</green>
-        <blue>11</blue>
+        <red>13</red>
+        <green>79</green>
+        <blue>9</blue>
        </color>
       </brush>
      </colorrole>
@@ -83,7 +83,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>835</width>
+     <width>1172</width>
      <height>22</height>
     </rect>
    </property>
@@ -101,6 +101,8 @@
     </widget>
     <addaction name="menuNew"/>
     <addaction name="actionRedeal"/>
+    <addaction name="actionPlay_Off"/>
+    <addaction name="actionPreferences"/>
    </widget>
    <addaction name="menuGame"/>
   </widget>
@@ -120,7 +122,7 @@
   </action>
   <action name="actionSpider">
    <property name="text">
-    <string>Spider(not complete)</string>
+    <string>Spider</string>
    </property>
   </action>
   <action name="actionFreeccell">
@@ -134,6 +136,16 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionPlay_Off">
+   <property name="text">
+    <string>Play Off</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
    </property>
   </action>
  </widget>

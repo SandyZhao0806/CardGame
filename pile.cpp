@@ -26,6 +26,7 @@ extern QList<Pile *> piles;
 
 
 //Rule *PileWaste::dragRules[DRAGLAST];
+//Rule *PileWaste::dropRules[DRAGLAST];
 
 // constructor
 Pile::Pile(int x, int y, int dx, int dy, QWidget *parent):
@@ -55,13 +56,11 @@ Pile::~Pile()
 void Pile::paintEvent(QPaintEvent *pe)
 
 {
-
     QStyleOption o;
     o.initFrom(this);
     QPainter p(this);
     style()->drawPrimitive(
     QStyle::PE_Widget, &o, &p, this);
-
 }
 
 void Pile::AcceptCards(Card *c, bool expose, bool record)

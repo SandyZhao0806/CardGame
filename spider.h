@@ -7,7 +7,7 @@ class Pile;
 class Spider:public Game
 {
     Pile *deal;
-    Pile *foundation[7];
+    Pile *foundation[8];
     Pile *tableau[10];
 private:
    void CreatePile();
@@ -15,7 +15,7 @@ public:
     Spider(QWidget *par);
     ~Spider();
     void ReDeal(hardtype h=EASY);
-     QString GameName(){return 0;}
+     QString GameName(){return "Spider";}
 };
 
 #endif // SPIDER_H
