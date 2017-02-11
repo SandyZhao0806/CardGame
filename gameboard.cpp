@@ -2,6 +2,7 @@
 #include <QTime>
 #include <QtGlobal>
 #include "game.h"
+#include"cardmove.h"
 #include "klondike.h"
 #include "spider.h"
 #include "freecell.h"
@@ -32,6 +33,7 @@ void gameboard::on_actionKlondike_triggered()
    g = new Klondike(ui->centralWidget);
    setWindowTitle(g->GameName());
    g->ReDeal(REPEAT);
+//   CardMove::Clear();
 }
 
 void gameboard::on_actionSpider_triggered()

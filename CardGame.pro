@@ -28,7 +28,7 @@ SOURCES += main.cpp\
     aboutdialog.cpp \
      card.cpp \
     pile.cpp \
-    cardmove.cpp \
+#    cardmove.cpp \
     freecell.cpp \
     game.cpp \
     help.cpp \
@@ -42,7 +42,7 @@ HEADERS  += gameboard.h \
     aboutdialog.h \
      card.h \
     pile.h \
-    cardmove.h \
+#    cardmove.h \
     freecell.h \
     game.h \
     help.h \

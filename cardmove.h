@@ -13,7 +13,11 @@ class CardMove
     bool wasFaceUp:1;
     static QStack<CardMove*> undostack;
 public:
-    CardMove();
+      CardMove();
+//    CardMove(Card *c, Pile *fr, Pile *t);
+//    CardMove(int n);
+//    static void UndoMove();
+//    static void Clear();
 };
 
 #endif // CARDMOVE_H

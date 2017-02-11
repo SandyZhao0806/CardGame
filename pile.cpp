@@ -50,6 +50,18 @@ Pile::~Pile()
     delete c;
     }
 
+    int i =0 ;
+    Rule *r = DragRule(i);
+    while(r){
+        delete r;
+        DragRule(i++,NULL);
+        r= DragRule(i);
+    }
+
+    for(i=0,r=DropRule(i);r;r=DropRule(++i)){
+        delete r;
+        DropRule(i,NULL);
+    }
     //TODO
 }
 
@@ -94,3 +106,9 @@ void Pile::AddDropRules(int n...)
     DropRule(i,NULL);
     va_end(lp);
 }
+
+//void Pile::CanBeDropped(Card* c){
+//    int i =0;
+//    bool of =true;
+//    while(ok&&DropRule())
+//}

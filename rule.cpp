@@ -34,8 +34,15 @@ Enforce(Pile *p,Card *c) {}
 bool RuleStackAlternateColor::
 Enforce(Pile *p,Card *c)
 {
-//    if(p->Bottom()->CardColor)
-
+    if(p->Bottom()->Color() != c->Color())
+        return true;
+    return false;
+//    bool ok =true;
+//    while(ok&&c->Over()){
+//        ok=c->Color()!=c->Over()->Color();
+//        c=c->Over();
+//    }
+//    return ok;
 }
 //--------------------------------------
 bool RuleStackMinusOne::
@@ -57,7 +64,12 @@ bool RuleStackLengthLimited::
 Enforce(Pile *p,Card *c) {}
 //--------------------------------------
 bool RuleMoveSameSuit::
-Enforce(Pile *p,Card *c) {}
+Enforce(Pile *p,Card *c) {
+//    bool ok = true;
+//    if(ok = c->Suit()==p->Bottom()->Suit())
+//        p->Bottom()->Under() = c
+
+}
 //--------------------------------------
 bool RuleMoveAltColor::
 Enforce(Pile *p,Card *c) {}

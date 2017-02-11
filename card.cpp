@@ -81,8 +81,8 @@ void Card::mouseReleaseEvent(QMouseEvent *ev){
 }
 void Card::mouseDoubleClickEvent(QMouseEvent *ev){
     if(pile)pile->mouseDoubleClickEvent(this);
-    //if(!over)//try to play-off card;
-    //Playoff();
+//    if(!over)//try to play-off card;
+//    Playoff();
 }
 void Card::Move(Pile *to, bool expose = true){
     int cardUnderCount = 0;
