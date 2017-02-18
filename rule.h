@@ -87,5 +87,7 @@ class RuleMoveOneAtATime :public Rule {
     bool Enforce(Pile *p,Card *c);
 };
 //-------------------------------------
-
+class RuleForFreeCell :public Rule {
+    bool Enforce(Pile *p,Card *c);
+};
 #endif // Rule_H

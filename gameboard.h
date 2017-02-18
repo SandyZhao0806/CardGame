@@ -6,7 +6,6 @@
 namespace Ui {
 class gameboard;
 }
-class Game;
 
 class gameboard : public QMainWindow
 {
@@ -25,9 +24,16 @@ private slots:
 
     void on_actionRedeal_triggered();
 
+    void on_actionUndo_triggered();
+
+    void on_actionAbout_3_triggered();
+
+    void on_actionHelp_3_triggered();
+
+    void on_actionPlay_Off_triggered();
+
 private:
     Ui::gameboard *ui;
-    Game * g = 0;
 };
 
 #endif // GAMEBOARD_H

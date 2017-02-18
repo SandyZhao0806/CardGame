@@ -7,30 +7,13 @@
 #include <QStyle>
 
 
-extern gameboard *MainApp;
+//extern gameboard *MainApp;
 extern Game *game;
-extern QList<Pile *> piles;
-
-// static member data allocation
-//Rule *PileStock::dragRules[DRAGLAST];
-//Rule *PileStock::dropRules[DROPLAST];
-
-//Rule *PileFoundation::dragRules[DRAGLAST];
-//Rule *PileFoundation::dropRules[DROPLAST];
-
-//Rule *PileTableau::dragRules[DRAGLAST];
-//Rule *PileTableau::dropRules[DROPLAST];
-
-//Rule *PileFreeCell::dragRules[DRAGLAST];
-//Rule *PileFreeCell::dropRules[DROPLAST];
-
-
-//Rule *PileWaste::dragRules[DRAGLAST];
-//Rule *PileWaste::dropRules[DRAGLAST];
+//extern QList<Pile *> piles;
 
 // constructor
-Pile::Pile(int x, int y, int dx, int dy, QWidget *parent):
-    QLabel(parent),delta(QPoint(dx,dy)),top(0),bottom(0)
+Pile::Pile(int x, int y, int dx, int dy, QWidget *parent, Game *game):
+    QLabel(parent),delta(QPoint(dx,dy)),top(0),bottom(0),game(game)
 {
         setStyleSheet("border: 2px dotted grey;");
         setParent(parent);
@@ -66,7 +49,6 @@ Pile::~Pile()
 }
 
 void Pile::paintEvent(QPaintEvent *pe)
-
 {
     QStyleOption o;
     o.initFrom(this);
@@ -75,7 +57,7 @@ void Pile::paintEvent(QPaintEvent *pe)
     QStyle::PE_Widget, &o, &p, this);
 }
 
-void Pile::AcceptCards(Card *c, bool expose, bool record)
+void Pile::AcceptCards(Card *c, bool expose)
 {
     Card * topMost;
     Card * temp = c;
@@ -83,8 +65,9 @@ void Pile::AcceptCards(Card *c, bool expose, bool record)
     {
         topMost = temp;
         topMost->Faceup(expose);//Important : This will set pixmap!
+        temp->setPile(this);//update the card's pile
         temp = temp->Over();
-    }while (temp);//temp will be NULL finally.
+    } while (temp);//temp will be NULL finally.
 
     if(top)
     {
@@ -93,7 +76,21 @@ void Pile::AcceptCards(Card *c, bool expose, bool record)
     }
     top = topMost;
     if(!bottom)
-        bottom = top;
+        bottom = c;
+    c->AlignWithPile();
+}
+
+void Pile::ReleaseCards(Card *c, bool expose ){
+    top = c->Under();
+    if(top){//if top exist...
+        //the new top should have no card on it.
+        top->setOver(0);
+        top->Faceup(expose);
+    }
+    if(bottom==c)
+        bottom = 0;
+    c->setUnder(0);
+
 }
 
 void Pile::AddDropRules(int n...)
@@ -107,8 +104,72 @@ void Pile::AddDropRules(int n...)
     va_end(lp);
 }
 
-//void Pile::CanBeDropped(Card* c){
-//    int i =0;
-//    bool of =true;
-//    while(ok&&DropRule())
-//}
+void Pile::AddDragRules(int n...){
+    va_list lp;
+    va_start(lp,n);
+    int i = 0;
+    while(i<n)
+        DragRule(i++,va_arg(lp,Rule*));
+    DragRule(i,NULL);
+    va_end(lp);
+}
+
+bool Pile::CanBeDragged(Card *c){
+    int i =0;
+    bool ok =true;
+    while(ok && DragRule(i)){
+        ok = DragRule(i)->Enforce(this,c);
+        i++;
+    }
+
+    return ok;
+}
+
+bool Pile::CanBeDropped(Card* c){
+    int i =0;
+    bool ok =true;
+    while(ok && DropRule(i)){
+        ok = DropRule(i)->Enforce(this,c);
+        i++;
+    }
+    return ok;
+}
+
+void Pile::FindClosestDrop(Card *c)
+{
+    const int NUM = 3;
+    QPoint drop = c->pos();
+    Pile *closest[NUM] = {NULL, NULL, NULL};
+    int distance[NUM] = {100, 200, 300};//use smaller distances.
+    for (int i = 0; i<game->piles.count(); i++)
+    {
+        Pile *p = game->piles[i];
+        if (p == c->pile) continue;
+        QPoint diff = drop - (p->top?p->top->pos():p->pos());
+        int dist = diff.manhattanLength();
+        for (int j = 0; j < NUM; j++)
+        {
+            if (dist < distance[j])
+            {
+                std::swap(dist, distance[j]);
+                std::swap(p, closest[j]);
+            }
+        }
+    }
+    for (int i = 0; i < NUM; i++)
+    {
+        if (closest[i] && closest[i]->CanBeDropped(c))
+        {
+            //use move to handle the exchange of cards.
+            c->Move(closest[i],true,true,true);
+            return;
+        }
+    }
+    QPoint p = c->under?(c->under->pos()+c->pile->Delta()/(c->under->faceup?1:2)):c->pile->pos();
+    c->AdjustPositions(p, c->pile->delta); // put them back if no move
+}
+
+void Pile::mouseReleaseEvent(QMouseEvent * ev)
+{
+    game->OnEmptyDealClick();
+}

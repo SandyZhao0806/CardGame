@@ -4,6 +4,13 @@
 #include <QLabel>
 #include <QImage>
 #include <QPoint>
+#include "gameboard.h"
+
+class Game;
+
+extern gameboard *gb;
+extern Game * game;
+
 enum cardColors{BLACK, RED};
 enum pips{ACE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE,TEN,JACK,QUEEN,KING,SUIT_SIZE};
 enum suits{CLUBS,DIAMONDS,HEARTS,SPADES};
@@ -41,6 +48,7 @@ public:
     pips Pip(){return pip;}
     cardColors Color(){return color;}
     Pile *Pilep(){return pile;}
+    void setPile(Pile *pile){this->pile = pile;}
     Card *Over(){return over;}
     void setOver(Card *over){this->over = over;}
     Card *Under(){return under;}
@@ -52,13 +60,13 @@ public:
     void mouseMoveEvent(QMouseEvent *ev);
     void mouseReleaseEvent(QMouseEvent *ev);
     void mouseDoubleClickEvent(QMouseEvent *ev);
-    void Move(Pile *to, bool expose);
-
+    void Move(Pile *to, bool expose = true, bool record = true);
+    void Move(Pile *to, bool expseTop, bool expose, bool record);
     Card *AdjustPositions(QPoint newPos, QPoint delta);
     void AlignWithPile();
     void Animate(QPoint newPos);
     static void Initialize(); // init static variable
-    void Flip();
+    void Flip();  //filp the card
     QSize sizeHint() const;
     void Playoff();
     friend class Pile;

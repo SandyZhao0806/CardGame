@@ -1,10 +1,16 @@
 #include "pile.h"
 #include "card.h"
+#include "rule.h"
+#include "game.h"
+#include "cardmove.h"
 QPoint Card::startDragPos;
 QPoint Card::mouseDownOffset;
 QPoint Card::popUpPos;
 Card* Card::popUpCard;
 QImage Card::faces[53];
+
+gameboard *gb=0;
+
 bool Card::initialized = false;
 
 Card::Card(int v, QWidget *parent)
@@ -36,7 +42,9 @@ int Card:: StackSize(){
     }while(card);
     return count;
 }
+
 void Card::mousePressEvent(QMouseEvent *ev){
+    moving = false;//initialize when mouse button is down.
     switch(ev->button()){
     case Qt::LeftButton:
         startDragPos=pos();
@@ -61,7 +69,7 @@ void Card::mouseMoveEvent(QMouseEvent *ev){
         AdjustPositions(point,pile?pile->Delta():QPoint(0,10));
 }
 void Card::mouseReleaseEvent(QMouseEvent *ev){
-    if(ev->button()) return;
+    //if(ev->button()) return;
     if(popUpCard){
         popUpCard->move(popUpPos);//restore card position
         popUpCard=NULL;
@@ -78,26 +86,31 @@ void Card::mouseReleaseEvent(QMouseEvent *ev){
         }
     moving=false;
     okToDrag=false;
+    game->CheckWin();
+
 }
 void Card::mouseDoubleClickEvent(QMouseEvent *ev){
     if(pile)pile->mouseDoubleClickEvent(this);
 //    if(!over)//try to play-off card;
 //    Playoff();
 }
-void Card::Move(Pile *to, bool expose = true){
-    int cardUnderCount = 0;
-    pile = to;
-
-    if(pile->Top())
-        cardUnderCount = pile->Top()->StackSize();
-
-    pile->AcceptCards(this, expose, false);
-
-    //TODO: Create another function to calc move distance
-    move(pile->x() + pile->Delta().x() / 2 * cardUnderCount, pile->y() + to->Delta().y() / 2 * cardUnderCount);
-    raise();// to top
-    show();
+void Card::Move(Pile *to, bool expose, bool record){
+  Move(to, false, expose, record);
 }
+
+void Card::Move(Pile *to, bool exposeTop, bool expose, bool record){
+    Pile * from;
+    if(from = Pilep()) {
+        // Create a record of the card move before it is moved to another pile
+        if(record)
+            new CardMove(this,from,to);
+        //This breaks the link of the orignial pile(cards are double-direction linked list)
+        Pilep()->ReleaseCards(this, exposeTop);
+    }
+    to->AcceptCards(this, expose);
+
+}
+
 
 Card* Card::AdjustPositions(QPoint newPos, QPoint delta){
     Card *c =this;
@@ -114,7 +127,27 @@ Card* Card::AdjustPositions(QPoint newPos, QPoint delta){
     return top;
 }
 void Card::AlignWithPile(){
-//
+    //if pile is empty, just put the card right on the pile.
+    //TODO: HANDLE EACH CARD ALL THE WAY TO THE TOP WITH THE LOGIC BELOW
+
+    Card *p = this;
+    do{
+        Card *c = p->Under();
+        if(!c)
+            p->move(pile->x(), pile->y());
+        else if(!c->Faceup()){
+             p->move(c->x()+pile->Delta().x()/2,
+            c->y()+pile->Delta().y()/2);
+        }
+        else{
+            p->move(c->x()+pile->Delta().x(),
+           c->y()+pile->Delta().y());
+        }
+
+        p->raise();
+        p = p->Over();
+
+    }while(p);
 }
 void Card::Animate(QPoint newPos){
 //
@@ -151,8 +184,8 @@ QSize Card::sizeHint() const{
 //
 }
 void Card::Playoff(){
-//
-  //  game->Playoff(this);
+
+    game->PlayOff(this);
 }
 
 void Shuffle(Card* Deck[],int n){

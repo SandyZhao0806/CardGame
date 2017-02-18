@@ -18,9 +18,11 @@ public:
     void ReDeal(hardtype h=EASY);
     QString GameName(){return "Klondike";}
 //    void DealAction();
-//    void OnFiledClick(Card *c);
-//    void OnDealClick(Card *);
-//    void OnDealtClick(Card *c);
+    void OnFiledClick(Card *c);
+    void OnDealtClick(Card *c);
+    void OnDealClick(Card *);
+    void OnEmptyDealClick();
+
 };
 
 #endif // KLONDIKE_H

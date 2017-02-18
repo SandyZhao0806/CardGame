@@ -25,34 +25,37 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         gameboard.cpp \
-    aboutdialog.cpp \
      card.cpp \
     pile.cpp \
-#    cardmove.cpp \
+    cardmove.cpp \
     freecell.cpp \
     game.cpp \
-    help.cpp \
      klondike.cpp \
     rule.cpp \
     spider.cpp \
+    pilesubclasses.cpp \
     winningdialog.cpp \
-    pilesubclasses.cpp
+    about.cpp \
+    help.cpp
 
 HEADERS  += gameboard.h \
-    aboutdialog.h \
      card.h \
     pile.h \
-#    cardmove.h \
+    cardmove.h \
     freecell.h \
     game.h \
-    help.h \
      klondike.h \
     rule.h \
     spider.h \
+    pilesubclasses.h \
     winningdialog.h \
-    pilesubclasses.h
+    about.h \
+    help.h
 
-FORMS    += gameboard.ui
+FORMS    += gameboard.ui \
+    winningdialog.ui \
+    about.ui \
+    help.ui
 
 RESOURCES += \
     cards.qrc

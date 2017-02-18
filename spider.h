@@ -15,6 +15,9 @@ public:
     Spider(QWidget *par);
     ~Spider();
     void ReDeal(hardtype h=EASY);
+    void OnDealClick(Card *);
+    void OnFiledClick(Card *c);
+    void OnDealtClick(Card *c);
      QString GameName(){return "Spider";}
 };
 

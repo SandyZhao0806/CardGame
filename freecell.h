@@ -15,6 +15,8 @@ public:
     FreeCell(QWidget *par);
     ~FreeCell();
     void ReDeal(hardtype h=EASY);
+    void OnFiledClick(Card *c);
+    void OnDealtClick(Card *c);
     QString GameName(){return "FreeCell";}
 };
 
